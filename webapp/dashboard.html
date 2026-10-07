@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetinaPlus</title>
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI — ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติให้แพทย์ตรวจสอบ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta property="og:description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI · ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติ">
+<meta property="og:image" content="https://retinaplus-app.hf.space/banner.png">
+<meta property="og:url" content="https://retinaplus-app.hf.space/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta name="twitter:image" content="https://retinaplus-app.hf.space/banner.png">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.3.0/dist/tabler-icons.min.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="/"><img src="icon.png" class="logo-img" alt="RetinaPlus"><span class="brand-name">Retina<b>Plus</b></span></a>
+  <div class="nav-links">
+    <a href="/" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
+    <a href="/detect" data-th="ตรวจ" data-en="Screen">ตรวจ</a>
+    <a href="/dashboard" class="active" data-th="แดชบอร์ด" data-en="Dashboard">แดชบอร์ด</a>
+    <div class="nav-tools">
+      <button class="tool-btn" data-tool="theme" onclick="toggleTheme()" aria-label="theme"><i class="ti ti-moon"></i></button>
+      <button class="tool-btn lang" data-tool="lang" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<main class="container dash">
+  <div class="dash-head reveal"><h1 data-th="แดชบอร์ด" data-en="Dashboard">แดชบอร์ด</h1>
+    <p data-th="สรุปผลการคัดกรองทั้งหมดในระบบ" data-en="Summary of all screenings">สรุปผลการคัดกรองทั้งหมดในระบบ</p></div>
+
+  <div class="metrics reveal d1">
+    <div class="metric"><span class="m-i blue"><i class="ti ti-photo"></i></span>
+      <div><b id="mTotal">0</b><span data-th="ตรวจทั้งหมด" data-en="Total scans">ตรวจทั้งหมด</span></div></div>
+    <div class="metric"><span class="m-i red"><i class="ti ti-alert-triangle"></i></span>
+      <div><b id="mRefer">0</b><span data-th="ควรพบแพทย์" data-en="Refer">ควรพบแพทย์</span></div></div>
+    <div class="metric"><span class="m-i green"><i class="ti ti-circle-check"></i></span>
+      <div><b id="mNormal">0</b><span data-th="ปกติ" data-en="Normal">ปกติ</span></div></div>
+    <div class="metric"><span class="m-i teal"><i class="ti ti-percentage"></i></span>
+      <div><b id="mRate">0%</b><span data-th="อัตราส่งต่อ" data-en="Referral rate">อัตราส่งต่อ</span></div></div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="card panel reveal d2"><h3 data-th="การกระจายระดับความรุนแรง" data-en="Severity distribution">การกระจายระดับความรุนแรง</h3>
+      <div id="dist" class="dist"></div></div>
+    <div class="card panel reveal d3"><h3 data-th="ประวัติล่าสุด" data-en="Recent history">ประวัติล่าสุด</h3>
+      <div id="hist" class="hist"></div></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="footer-brand"><img src="icon.png" class="logo-img" alt="RetinaPlus">Retina<b>Plus</b></span>
+  <span style="font-size:12px;opacity:.75">© 2025 RetinaPlus · <span data-th="พัฒนาโดย Nathakorn" data-en="Developed by Nathakorn">พัฒนาโดย Nathakorn</span></span>
+</footer>
+<script src="shared.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

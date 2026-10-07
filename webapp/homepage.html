@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetinaPlus</title>
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI — ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติให้แพทย์ตรวจสอบ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta property="og:description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI · ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติ">
+<meta property="og:image" content="https://retinaplus-app.hf.space/banner.png">
+<meta property="og:url" content="https://retinaplus-app.hf.space/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta name="twitter:image" content="https://retinaplus-app.hf.space/banner.png">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="homepage.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.3.0/dist/tabler-icons.min.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="/"><img src="icon.png" class="logo-img" alt="RetinaPlus"><span class="brand-name">Retina<b>Plus</b></span></a>
+  <div class="nav-links">
+    <a href="/" class="active" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
+    <a href="/detect" data-th="ตรวจ" data-en="Screen">ตรวจ</a>
+    <a href="/dashboard" data-th="แดชบอร์ด" data-en="Dashboard">แดชบอร์ด</a>
+    <div class="nav-tools">
+      <button class="tool-btn" data-tool="theme" onclick="toggleTheme()" aria-label="theme"><i class="ti ti-moon"></i></button>
+      <button class="tool-btn lang" data-tool="lang" onclick="toggleLang()">EN</button>
+    </div>
+    <a href="/detect" class="btn btn-primary" style="padding:9px 18px" data-th="เริ่มตรวจ" data-en="Start">เริ่มตรวจ</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="dots"></div>
+  <span class="glow a" style="width:420px;height:420px;top:-100px;right:-80px"></span>
+  <span class="glow b" style="width:340px;height:340px;bottom:-120px;left:-90px"></span>
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="pill pill-ok reveal"><i class="ti ti-eye-check"></i>
+        <span data-th="คัดกรองเบาหวานขึ้นจอตาด้วย AI" data-en="AI retinopathy screening">คัดกรองเบาหวานขึ้นจอตาด้วย AI</span></span>
+      <h1 class="reveal d1">
+        <span data-th="คัดกรอง" data-en="Screen for ">คัดกรอง</span><span class="hl" data-th="เบาหวานขึ้นจอตา" data-en="diabetic retinopathy">เบาหวานขึ้นจอตา</span>
+        <span data-th="จากภาพถ่ายจอตา" data-en="from fundus images">จากภาพถ่ายจอตา</span>
+      </h1>
+      <p class="reveal d2" data-th="อัปโหลดหรือถ่ายภาพจอตา ระบบประเมินระดับความรุนแรงและความเสี่ยง พร้อมไฮไลต์บริเวณที่ผิดปกติให้แพทย์ตรวจสอบ"
+         data-en="Upload or capture a fundus image. The system estimates the severity level and risk, and highlights abnormal regions for the doctor to review.">อัปโหลดหรือถ่ายภาพจอตา ระบบประเมินระดับความรุนแรงและความเสี่ยง พร้อมไฮไลต์บริเวณที่ผิดปกติให้แพทย์ตรวจสอบ</p>
+      <div class="hero-cta reveal d3">
+        <a href="/detect" class="btn btn-primary"><i class="ti ti-camera"></i> <span data-th="เริ่มตรวจเลย" data-en="Start screening">เริ่มตรวจเลย</span></a>
+        <a href="#how" class="btn btn-ghost" data-th="วิธีใช้งาน" data-en="How it works">วิธีใช้งาน</a>
+      </div>
+      <div class="hero-stats reveal d4">
+        <div class="hs"><i class="ti ti-stack-2"></i><div><b data-th="5 ระดับ" data-en="5 levels">5 ระดับ</b><span data-th="ความรุนแรง" data-en="of severity">ความรุนแรง</span></div></div>
+        <div class="hs"><i class="ti ti-bolt"></i><div><b data-th="ไม่กี่วินาที" data-en="Seconds">ไม่กี่วินาที</b><span data-th="รู้ผลทันที" data-en="to results">รู้ผลทันที</span></div></div>
+        <div class="hs"><i class="ti ti-flare"></i><div><b>Grad-CAM</b><span data-th="อธิบายผลได้" data-en="explainable">อธิบายผลได้</span></div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <div class="eye-stage">
+        <span class="eye-ring"></span>
+        <span class="eye-ring2"></span>
+        <span class="eye-glow"></span>
+        <img src="icon.png" class="eye-img" alt="">
+        <span class="eye-scan"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container feat-grid">
+    <div class="card feat hov reveal"><i class="ti ti-bolt"></i>
+      <h3 data-th="ประมวลผลไว" data-en="Fast">ประมวลผลไว</h3>
+      <p data-th="รู้ผลภายในไม่กี่วินาที" data-en="Results in a few seconds">รู้ผลภายในไม่กี่วินาที</p></div>
+    <div class="card feat hov reveal d1"><i class="ti ti-shield-lock"></i>
+      <h3 data-th="ปลอดภัย" data-en="Secure">ปลอดภัย</h3>
+      <p data-th="ไม่บุกรุกร่างกาย" data-en="Processed on-device, data stays private">ประมวลผลในเครื่อง ข้อมูลไม่รั่วไหล</p></div>
+    <div class="card feat hov reveal d2"><i class="ti ti-hand-finger"></i>
+      <h3 data-th="ใช้งานง่าย" data-en="Easy to use">ใช้งานง่าย</h3>
+      <p data-th="ถ่ายหรืออัปโหลดภาพ รู้ผลทันที" data-en="Capture or upload, get instant results">ถ่ายหรืออัปโหลดภาพ รู้ผลทันที</p></div>
+    <div class="card feat hov reveal d3"><i class="ti ti-target-arrow"></i>
+      <h3 data-th="ความแม่นยำสูง" data-en="High accuracy">ความแม่นยำสูง</h3>
+      <p data-th="โมเดล AI ประเมินระดับได้แม่นยำ" data-en="Accurate AI severity grading">โมเดล AI ประเมินระดับได้แม่นยำ</p></div>
+  </div>
+</section>
+
+<section class="section scale-sec">
+  <div class="container">
+    <h2 class="sec-title reveal" data-th="ประเมินได้ 5 ระดับความรุนแรง" data-en="Grades all 5 severity levels">ประเมินได้ 5 ระดับความรุนแรง</h2>
+    <p class="sec-sub reveal" data-th="ระบบจัดระดับตามมาตรฐานสากล ตั้งแต่ปกติจนถึงระยะลุกลาม"
+       data-en="Graded on the international scale, from normal to proliferative">ระบบจัดระดับตามมาตรฐานสากล ตั้งแต่ปกติจนถึงระยะลุกลาม</p>
+    <div class="scale-grid">
+      <div class="card scale s0 hov reveal"><span class="sc-no">0</span>
+        <h4>No DR</h4><p data-th="ไม่พบเบาหวานขึ้นจอตา" data-en="No retinopathy">ไม่พบความผิดปกติ</p></div>
+      <div class="card scale s1 hov reveal d1"><span class="sc-no">1</span>
+        <h4 data-th="เล็กน้อย" data-en="Mild">เล็กน้อย</h4><p data-th="พบ microaneurysm เริ่มต้น" data-en="Early microaneurysms">พบจุดเลือดเล็กเริ่มต้น</p></div>
+      <div class="card scale s2 hov reveal d2"><span class="sc-no">2</span>
+        <h4 data-th="ปานกลาง" data-en="Moderate">ปานกลาง</h4><p data-th="จุดเลือดออก / hard exudate" data-en="Hemorrhages / exudates">จุดเลือดออก/คราบไขมัน</p></div>
+      <div class="card scale s3 hov reveal d3"><span class="sc-no">3</span>
+        <h4 data-th="รุนแรง" data-en="Severe">รุนแรง</h4><p data-th="ความผิดปกติชัดเจน ควรพบแพทย์" data-en="Marked abnormalities">ผิดปกติชัด ควรพบแพทย์</p></div>
+      <div class="card scale s4 hov reveal d4"><span class="sc-no">4</span>
+        <h4 data-th="ลุกลาม" data-en="Proliferative">ลุกลาม</h4><p data-th="เส้นเลือดงอกผิดปกติ เร่งด่วน" data-en="Neovascularization">เส้นเลือดงอกผิดปกติ</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <h2 class="sec-title reveal" data-th="ใช้งาน 3 ขั้นตอน" data-en="Three simple steps">ใช้งาน 3 ขั้นตอน</h2>
+    <div class="steps">
+      <div class="card step hov reveal"><span class="step-i"><i class="ti ti-camera"></i></span>
+        <h3 data-th="1 · ถ่ายหรืออัปโหลด" data-en="1 · Capture or upload">1 · ถ่ายหรืออัปโหลด</h3>
+        <p data-th="ถ่ายภาพจอตาสด หรืออัปโหลดไฟล์ภาพ" data-en="Capture live or upload a fundus image">ถ่ายภาพจอตาสด หรืออัปโหลดไฟล์ภาพ</p></div>
+      <div class="card step hov reveal d1"><span class="step-i"><i class="ti ti-brain"></i></span>
+        <h3 data-th="2 · AI วิเคราะห์" data-en="2 · AI analyzes">2 · AI วิเคราะห์</h3>
+        <p data-th="ประเมินระดับ + ไฮไลต์บริเวณผิดปกติ" data-en="Grades severity + highlights regions">ประเมินระดับ + ไฮไลต์บริเวณผิดปกติ</p></div>
+      <div class="card step hov reveal d2"><span class="step-i"><i class="ti ti-stethoscope"></i></span>
+        <h3 data-th="3 · ส่งต่อแพทย์" data-en="3 · Send to doctor">3 · ส่งต่อแพทย์</h3>
+        <p data-th="สรุปผล + ภาพวิเคราะห์ ให้แพทย์ตรวจสอบ" data-en="Summary + analysis for doctor review">สรุปผล + ภาพวิเคราะห์ ให้แพทย์ตรวจสอบ</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-title reveal" data-th="ผลที่อธิบายได้" data-en="Explainable results">ผลที่อธิบายได้</h2>
+    <div class="preview card reveal d1">
+      <div class="pv-left">
+        <span class="pill pill-bad"><i class="ti ti-alert-triangle"></i>
+          <span data-th="ควรพบจักษุแพทย์" data-en="Refer to doctor">ควรพบจักษุแพทย์</span></span>
+        <h3 data-th="ไม่ใช่แค่บอกผล — แต่ชี้ให้เห็นว่า AI ดูตรงไหน"
+            data-en="Not just an answer — it shows where the AI looked">ไม่ใช่แค่บอกผล — แต่ชี้ให้เห็นว่า AI ดูตรงไหน</h3>
+        <p data-th="ระบบไฮไลต์บริเวณที่ผิดปกติ ให้จักษุแพทย์ตรวจสอบได้ พร้อมระดับความรุนแรงและความเสี่ยง"
+           data-en="It highlights abnormal regions for the doctor to verify, with severity level and risk.">ระบบไฮไลต์บริเวณที่ผิดปกติ ให้จักษุแพทย์ตรวจสอบได้ พร้อมระดับความรุนแรงและความเสี่ยง</p>
+        <div class="pv-stages">
+          <span>No DR</span><span>Mild</span><span class="on">Moderate</span><span>Severe</span><span>Prolif.</span>
+        </div>
+      </div>
+      <div class="pv-right">
+        <div class="pv-eye"><div class="eye2"></div><b data-th="ภาพจอตา" data-en="Fundus">ภาพจอตา</b></div>
+        <div class="pv-eye"><div class="eye2 heat"></div><b>Grad-CAM</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2 class="reveal" data-th="พร้อมคัดกรองแล้วหรือยัง?" data-en="Ready to screen?">พร้อมคัดกรองแล้วหรือยัง?</h2>
+    <p class="reveal d1" data-th="เครื่องมือคัดกรองเบื้องต้น ผลควรได้รับการยืนยันโดยจักษุแพทย์"
+       data-en="A screening aid — results should be confirmed by an ophthalmologist.">เครื่องมือคัดกรองเบื้องต้น ผลควรได้รับการยืนยันโดยจักษุแพทย์</p>
+    <a href="/detect" class="btn btn-primary reveal d2"><i class="ti ti-camera"></i> <span data-th="เริ่มตรวจ" data-en="Start">เริ่มตรวจ</span></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-brand"><img src="icon.png" class="logo-img" alt="RetinaPlus">Retina<b>Plus</b></span>
+  <span data-th="เครื่องมือช่วยคัดกรองเบาหวานขึ้นจอตา · ไม่ใช่การวินิจฉัย ผลควรได้รับการยืนยันโดยจักษุแพทย์"
+    data-en="A diabetic retinopathy screening aid · not a diagnosis — confirm with an ophthalmologist">เครื่องมือช่วยคัดกรองเบาหวานขึ้นจอตา · ไม่ใช่การวินิจฉัย ผลควรได้รับการยืนยันโดยจักษุแพทย์</span>
+  <span style="font-size:12px;opacity:.7">© 2025 RetinaPlus · <span data-th="พัฒนาโดย Nathakorn" data-en="Developed by Nathakorn">พัฒนาโดย Nathakorn</span></span>
+</footer>
+<script src="shared.js"></script>
+<script src="homepage.js"></script>
+</body>
+</html>

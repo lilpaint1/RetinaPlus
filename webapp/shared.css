@@ -1,0 +1,134 @@
+/* RetinaPlus — shared design system (iOS-modern, clean medical) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#F4F7FB;
+  --surface:#FFFFFF;
+  --surface-2:#F0F4F9;
+  --text:#16202E;
+  --text-2:#5A6776;
+  --text-3:#93A0AE;
+  --brand:#3B9BF0;        /* light blue — calm medical */
+  --brand-d:#1F77D6;
+  --brand-soft:#E7F2FD;
+  --danger:#E5484D;
+  --danger-soft:#FCE9E9;
+  --warn:#E8910C;
+  --warn-soft:#FCF0DB;
+  --line:#E6ECF3;
+  --shadow:0 4px 24px rgba(20,40,70,.06);
+  --shadow-lg:0 12px 40px rgba(20,40,70,.10);
+  --nav-bg:rgba(255,255,255,.72);
+  --glow-a:rgba(59,155,240,.16); --glow-b:rgba(120,200,255,.13);
+  --r:14px; --r-lg:22px; --r-xl:30px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+[data-theme="dark"]{
+  --bg:#0B121B; --surface:#161F2B; --surface-2:#1E2A38;
+  --text:#EAF0F7; --text-2:#A3B1C0; --text-3:#6E7E90;
+  --brand:#56ACF6; --brand-d:#86C2F9; --brand-soft:#163049;
+  --danger:#F0656A; --danger-soft:#3A1E20; --warn:#F0A93A; --warn-soft:#3A2C12;
+  --line:#27333F; --shadow:0 4px 24px rgba(0,0,0,.35); --shadow-lg:0 12px 40px rgba(0,0,0,.5);
+  --nav-bg:rgba(13,20,29,.82);
+  --glow-a:rgba(60,130,210,.20); --glow-b:rgba(40,90,150,.16);
+}
+html{transition:background .3s var(--ease)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* nav */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 28px;
+  min-height:72px;
+  background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:22px;letter-spacing:-.025em;color:var(--text)}
+.brand-name b{color:var(--brand);font-weight:800}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{padding:8px 16px;border-radius:11px;font-size:14.5px;font-weight:500;color:var(--text-2);
+  transition:.2s var(--ease)}
+.nav-links a:hover{background:var(--surface-2);color:var(--text)}
+.nav-links a.active{color:var(--brand);background:var(--brand-soft)}
+.nav-tools{display:flex;gap:6px;align-items:center;margin-left:4px}
+.tool-btn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:var(--surface);
+  color:var(--text-2);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:.2s var(--ease);font-family:inherit;font-weight:600}
+.tool-btn:hover{background:var(--surface-2);color:var(--text)}
+.tool-btn.lang{width:auto;padding:0 12px;font-size:13px}
+.logo-img{height:46px;width:46px;object-fit:contain;display:block}
+
+/* decorative glow blobs (modern, soft) */
+.glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.glow.a{background:var(--glow-a)}.glow.b{background:var(--glow-b)}
+
+/* dotted texture */
+.dots{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000,transparent 75%);
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000,transparent 75%)}
+
+/* card hover lift */
+.card.hov{transition:.28s var(--ease)}
+.card.hov:hover{transform:translateY(-5px);border-color:var(--brand);box-shadow:var(--shadow-lg)}
+
+/* footer with logo */
+.footer{text-align:center;color:var(--text-3);font-size:13px;padding:48px 24px 36px;
+  display:flex;flex-direction:column;align-items:center;gap:12px}
+.footer-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--text)}
+.footer-brand .logo-img{height:42px;width:42px}
+.footer-brand b{color:var(--brand)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  padding:13px 26px;border-radius:14px;font-weight:600;font-size:15px;cursor:pointer;
+  border:none;transition:.25s var(--ease);font-family:inherit}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 18px rgba(59,155,240,.30)}
+.btn-primary:hover{background:var(--brand-d);transform:translateY(-2px);box-shadow:0 10px 26px rgba(59,155,240,.38)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--surface-2);transform:translateY(-2px)}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow)}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* pills */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;
+  font-size:13px;font-weight:600}
+.pill-ok{background:var(--brand-soft);color:var(--brand-d)}
+.pill-bad{background:var(--danger-soft);color:var(--danger)}
+.pill-warn{background:var(--warn-soft);color:var(--warn)}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reveal{opacity:0;animation:fadeUp .7s var(--ease) forwards}
+.reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.16s}.reveal.d3{animation-delay:.24s}
+.reveal.d4{animation-delay:.32s}
+
+@media(max-width:680px){
+  .nav{padding:10px 14px;min-height:60px}
+  .nav-links{gap:3px}
+  .nav-links a:not(.btn){padding:6px 8px;font-size:12.5px}
+  .logo-img{height:40px;width:40px}
+  .brand{font-size:18px;gap:9px}
+  .tool-btn{width:34px;height:34px;font-size:16px}
+  .tool-btn.lang{padding:0 9px;font-size:12px}
+}
+@media(max-width:520px){
+  .nav-links a.btn-primary{display:none}
+  .nav-links a:not(.btn){padding:5px 6px;font-size:12px}
+   .brand .logo-img{height:36px;width:36px}
+  .brand-name{display:none}
+}
