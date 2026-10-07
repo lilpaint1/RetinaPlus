@@ -1,0 +1,39 @@
+{
+  "P_LO": 0.029213483146067417,
+  "P_HI": 0.3333333333333333,
+  "sens_target": 0.95,
+  "spec_target": 0.95,
+  "rounder_coefs": [
+    0.515,
+    1.264,
+    2.376,
+    3.079
+  ],
+  "referable_thr": 1.264,
+  "report": [
+    {
+      "dataset": "ddr",
+      "n": 12522,
+      "automation_rate": 0.6483788532183358,
+      "abstain_rate": 0.3516211467816643,
+      "auto_sens": 0.9779049122114816,
+      "auto_spec": 0.8265573770491803
+    },
+    {
+      "dataset": "idrid",
+      "n": 455,
+      "automation_rate": 0.8703296703296703,
+      "abstain_rate": 0.12967032967032968,
+      "auto_sens": 1.0,
+      "auto_spec": 0.5104166666666666
+    },
+    {
+      "dataset": "test",
+      "n": 9261,
+      "automation_rate": 0.644638807904114,
+      "abstain_rate": 0.35536119209588596,
+      "auto_sens": 0.9413965087281796,
+      "auto_spec": 0.9216674301420064
+    }
+  ]
+}

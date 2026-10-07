@@ -1,0 +1,37 @@
+/* RetinaPlus — dashboard */
+.dash{padding:40px 24px 60px}
+.dash-head{margin-bottom:26px}
+.dash-head h1{font-size:32px;font-weight:700;letter-spacing:-.02em}
+.dash-head p{color:var(--text-2);margin-top:6px}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:20px;display:flex;align-items:center;gap:14px}
+.m-i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.m-i.blue{background:#E6F1FB;color:#185FA5}.m-i.red{background:var(--danger-soft);color:var(--danger)}
+.m-i.green{background:var(--brand-soft);color:var(--brand-d)}.m-i.teal{background:#E1F5EE;color:#0F6E56}
+.metric b{font-size:26px;font-weight:700;display:block;line-height:1.1}
+.metric span{font-size:13px;color:var(--text-3)}
+
+.dash-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:18px}
+.panel{padding:24px}
+.panel h3{font-size:17px;font-weight:600;margin-bottom:18px}
+
+.dist .row{margin-bottom:14px}
+.dist .row .top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px}
+.dist .row .top b{font-weight:600}
+.dist .bar{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.dist .bar i{display:block;height:100%;border-radius:999px;transition:width .8s var(--ease)}
+.dist .g0 i{background:var(--brand)}.dist .g1 i,.dist .g2 i{background:var(--warn)}
+.dist .g3 i,.dist .g4 i{background:var(--danger)}
+
+.hist{display:flex;flex-direction:column;gap:9px;max-height:340px;overflow:auto}
+.hist .h-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:13px;background:var(--surface-2)}
+.hist .h-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.hist .h-dot.bad{background:var(--danger)}.hist .h-dot.ok{background:var(--brand)}
+.hist .h-row .g{flex:1;font-size:14px;font-weight:500}
+.hist .h-row .t{font-size:12px;color:var(--text-3)}
+.hist .h-row .r{font-size:13px;font-weight:600}
+.hist .empty{color:var(--text-3);text-align:center;padding:30px;font-size:14px}
+
+@media(max-width:820px){.metrics{grid-template-columns:1fr 1fr}.dash-grid{grid-template-columns:1fr}}

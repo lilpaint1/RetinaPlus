@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetinaPlus</title>
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI — ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติให้แพทย์ตรวจสอบ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta property="og:description" content="คัดกรองเบาหวานขึ้นจอตาด้วย AI · ประเมิน 5 ระดับความรุนแรง พร้อมไฮไลต์บริเวณที่ผิดปกติ">
+<meta property="og:image" content="https://retinaplus-app.hf.space/banner.png">
+<meta property="og:url" content="https://retinaplus-app.hf.space/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RetinaPlus — AI Diabetic Retinopathy Screening">
+<meta name="twitter:image" content="https://retinaplus-app.hf.space/banner.png">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="detect.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.3.0/dist/tabler-icons.min.css">
+</head>
+<body>
+<div id="splash" class="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-rings">
+    <span class="sring s1"></span>
+    <span class="sring s2"></span>
+    <span class="sring s3"></span>
+  </div>
+  <div class="splash-inner">
+    <div class="splash-logo-wrap">
+      <img src="icon.png" class="splash-logo" alt="RetinaPlus">
+    </div>
+    <div class="splash-label">
+      <span class="splash-dot"></span>
+      <span class="splash-txt" data-th="กำลังเตรียมระบบตรวจ" data-en="Preparing scanner">กำลังเตรียมระบบตรวจ</span>
+    </div>
+  </div>
+</div>
+<nav class="nav">
+  <a class="brand" href="/"><img src="icon.png" class="logo-img" alt="RetinaPlus"><span class="brand-name">Retina<b>Plus</b></span></a>
+  <div class="nav-links">
+    <a href="/" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
+    <a href="/detect" class="active" data-th="ตรวจ" data-en="Screen">ตรวจ</a>
+    <a href="/dashboard" data-th="แดชบอร์ด" data-en="Dashboard">แดชบอร์ด</a>
+    <div class="nav-tools">
+      <button class="tool-btn" data-tool="theme" onclick="toggleTheme()" aria-label="theme"><i class="ti ti-moon"></i></button>
+      <button class="tool-btn lang" data-tool="lang" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="page-glow">
+  <span class="glow a" style="width:460px;height:460px;top:-120px;right:-100px"></span>
+  <span class="glow b" style="width:380px;height:380px;bottom:-140px;left:-120px"></span>
+</div>
+
+<main class="container det">
+  <div class="det-head reveal">
+    <h1 data-th="ตรวจคัดกรองเบาหวานขึ้นจอตา" data-en="Diabetic retinopathy screening">ตรวจคัดกรองเบาหวานขึ้นจอตา</h1>
+    <p data-th="ถ่ายภาพจอตาสด หรืออัปโหลดไฟล์ภาพ เพื่อให้ AI วิเคราะห์"
+       data-en="Capture live or upload a fundus image for AI analysis">ถ่ายภาพจอตาสด หรืออัปโหลดไฟล์ภาพ เพื่อให้ AI วิเคราะห์</p>
+    <span id="modeTag" class="pill pill-warn" style="display:none"><i class="ti ti-flask"></i>
+      <span data-th="โหมดสาธิต" data-en="Demo mode">โหมดสาธิต</span></span>
+  </div>
+
+  <!-- image source mode (standard / mobile+20D) -->
+  <div id="modeRow" class="card mode-row reveal d1">
+    <span class="mode-lbl"><i class="ti ti-adjustments"></i> <span data-th="ชนิดภาพ" data-en="Image source">ชนิดภาพ</span></span>
+    <button class="mode-opt active" data-mode="fundus"><i class="ti ti-device-desktop"></i> <span data-th="กล้องจอตามาตรฐาน" data-en="Standard fundus camera">กล้องจอตามาตรฐาน</span></button>
+    <button class="mode-opt" data-mode="mobile"><i class="ti ti-device-mobile"></i> <span data-th="มือถือ + เลนส์ 20D" data-en="Phone + 20D lens">มือถือ + เลนส์ 20D</span></button>
+  </div>
+
+  <!-- choose: camera or upload -->
+  <div id="chooser" class="card chooser reveal d1">
+    <button class="choice" id="tabCam"><i class="ti ti-camera"></i>
+      <span data-th="ถ่ายภาพสด" data-en="Take photo">ถ่ายภาพสด</span></button>
+    <button class="choice active" id="tabUp"><i class="ti ti-upload"></i>
+      <span data-th="อัปโหลดไฟล์" data-en="Upload file">อัปโหลดไฟล์</span></button>
+  </div>
+
+  <!-- upload panel -->
+  <div id="upPanel" class="card upload reveal d2">
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="drop" id="drop">
+      <span class="drop-i"><i class="ti ti-photo-up"></i></span>
+      <h3 data-th="ลากภาพมาวาง หรือคลิกเพื่อเลือก" data-en="Drag an image here or click to choose">ลากภาพมาวาง หรือคลิกเพื่อเลือก</h3>
+      <p data-th="รองรับ JPG · PNG — ภาพถ่ายจอตา" data-en="JPG · PNG — fundus image">รองรับ JPG · PNG — ภาพถ่ายจอตา</p>
+      <button class="btn btn-primary" id="pickBtn"><i class="ti ti-folder-open"></i>
+        <span data-th="เลือกภาพ" data-en="Choose image">เลือกภาพ</span></button>
+    </div>
+  </div>
+
+  <!-- camera panel -->
+  <div id="camPanel" class="card camera" style="display:none">
+    <div class="cam-stage">
+      <video id="video" autoplay playsinline muted></video>
+      <div class="eye-frame">
+        <span class="bk tl"></span><span class="bk tr"></span><span class="bk bl"></span><span class="bk br"></span>
+        <div class="ring"></div><div class="cross-h"></div><div class="cross-v"></div>
+      </div>
+      <div class="cam-hint" data-th="จัดดวงตา/จอตาให้อยู่ในกรอบ" data-en="Align the eye inside the frame">จัดดวงตา/จอตาให้อยู่ในกรอบ</div>
+    </div>
+    <div class="cam-bar">
+      <button class="tool-btn" id="flip" aria-label="flip"><i class="ti ti-camera-rotate"></i></button>
+      <button class="shutter" id="snap" aria-label="capture"><span></span></button>
+      <span style="width:38px"></span>
+    </div>
+    <canvas id="canvas" hidden></canvas>
+  </div>
+
+  <!-- loading -->
+  <div id="loading" class="card loading" style="display:none">
+    <div class="spinner"></div>
+    <h3 data-th="กำลังวิเคราะห์…" data-en="Analyzing…">กำลังวิเคราะห์…</h3>
+    <p data-th="ประมวลผลภายในไม่กี่วินาที" data-en="Processing in seconds">ประมวลผลภายในไม่กี่วินาที</p>
+  </div>
+
+  <!-- result -->
+  <div id="result" class="result" style="display:none">
+    <!-- screener-facing verdict (simple) -->
+    <div id="verdict" class="card verdict"></div>
+
+    <!-- clean fundus image -->
+    <div class="card viewer" id="viewerCard">
+      <div class="lbl"><i class="ti ti-photo"></i> <span id="baseLbl" data-th="ภาพจอตา" data-en="Fundus image">ภาพจอตา</span></div>
+      <div class="stack" id="stack">
+        <img id="imgBase" class="lyr-img" alt="">
+        <img id="imgLesion" class="lyr-img ov" alt="">
+        <img id="imgLandmark" class="lyr-img ov" alt="">
+      </div>
+    </div>
+
+    <!-- deep-dive toggle (for doctors) -->
+    <button class="deepbtn" id="deepBtn">
+      <span class="db-l"><i class="ti ti-stethoscope"></i> <span data-th="ข้อมูลเชิงลึกสำหรับแพทย์" data-en="Clinical details for doctors">ข้อมูลเชิงลึกสำหรับแพทย์</span></span>
+      <i class="ti ti-chevron-down db-chev" id="deepChev"></i>
+    </button>
+
+    <!-- deep-dive panel (collapsed) -->
+    <div id="deepdive" class="deepdive" style="display:none">
+      <div class="card dd-card">
+        <div class="lbl"><i class="ti ti-stack-2"></i> <span data-th="ชั้นภาพ (เปิด/ปิดได้)" data-en="Image layers (toggle)">ชั้นภาพ (เปิด/ปิดได้)</span></div>
+        <div class="viewer-ctrl">
+          <button class="lyr-btn" id="tgLesion"><i class="ti ti-eye"></i> <span data-th="รอยโรค" data-en="Lesions">รอยโรค</span></button>
+          <button class="lyr-btn" id="tgLandmark"><i class="ti ti-circle-dashed"></i> <span data-th="จุดอ้างอิง" data-en="Landmarks">จุดอ้างอิง</span></button>
+          <span class="vsep"></span>
+          <button class="lyr-btn on" id="baseRaw">Raw</button>
+          <button class="lyr-btn" id="baseEnh" data-th="ปรับชัด" data-en="Enhanced">ปรับชัด</button>
+          <span class="op-wrap"><span data-th="ความเข้ม" data-en="Opacity">ความเข้ม</span>
+            <input type="range" id="opacity" min="0" max="100" value="55" step="1"></span>
+        </div>
+        <div class="legend"><span><i class="dot" style="background:#e24b4a"></i>MA</span><span><i class="dot" style="background:#2f6fe0"></i>HE</span><span><i class="dot" style="background:#39b54a"></i>EX</span><span><i class="dot" style="background:#e0c000"></i>SE</span></div>
+      </div>
+
+      <div class="dd-grid">
+        <div class="card dd-card">
+          <div class="lbl"><i class="ti ti-chart-bar"></i> <span data-th="ระดับความรุนแรง" data-en="Severity">ระดับความรุนแรง</span></div>
+          <div class="stages" id="stages"></div>
+          <div class="scorebar"><div class="scorebar-fill" id="scoreFill"></div></div>
+          <div class="score-meta"><span>No DR</span><span id="scoreVal">score 0.0</span><span>Prolif.</span></div>
+        </div>
+        <div class="card dd-card">
+          <div class="lbl"><i class="ti ti-clipboard-text"></i> <span data-th="รายงานเชิงตัวเลข" data-en="Quantified findings">รายงานเชิงตัวเลข</span></div>
+          <div id="findings" class="findings"></div>
+        </div>
+      </div>
+
+      <div class="card dd-card"><div id="why" class="why2"></div></div>
+    </div>
+
+    <div class="card disclaimer"><i class="ti ti-info-circle"></i>
+      <span data-th="เครื่องมือช่วยตัดสินใจ ไม่ใช่การวินิจฉัยขั้นสุดท้าย — ผลต้องได้รับการยืนยันโดยจักษุแพทย์" data-en="Decision-support, not a final diagnosis — confirm with an ophthalmologist.">เครื่องมือช่วยตัดสินใจ ไม่ใช่การวินิจฉัยขั้นสุดท้าย — ผลต้องได้รับการยืนยันโดยจักษุแพทย์</span></div>
+    <div class="act">
+      <button class="btn btn-ghost" id="again"><i class="ti ti-refresh"></i> <span data-th="ตรวจใหม่" data-en="Scan again">ตรวจใหม่</span></button>
+      <button class="btn btn-primary" id="send"><i class="ti ti-send"></i> <span data-th="ส่งให้จักษุแพทย์" data-en="Send to ophthalmologist">ส่งให้จักษุแพทย์</span></button>
+    </div>
+  </div>
+
+  <div class="tips-row reveal d3">
+    <div class="tip"><i class="ti ti-bulb"></i>
+      <b data-th="แสงสว่างพอ" data-en="Good lighting">แสงสว่างพอ</b>
+      <span data-th="ถ่ายในที่มีแสงเพียงพอ ไม่ย้อนแสง" data-en="Shoot in even, bright light">ถ่ายในที่มีแสงเพียงพอ</span></div>
+    <div class="tip"><i class="ti ti-focus-2"></i>
+      <b data-th="โฟกัสให้ชัด" data-en="Sharp focus">โฟกัสให้ชัด</b>
+      <span data-th="จัดจอตาให้อยู่กลางเฟรมและคมชัด" data-en="Center the retina, keep it sharp">จัดจอตาให้อยู่กลางเฟรม</span></div>
+    <div class="tip"><i class="ti ti-photo-check"></i>
+      <b data-th="ใช้ภาพจอตาจริง" data-en="Real fundus image">ใช้ภาพจอตาจริง</b>
+      <span data-th="รองรับเฉพาะภาพถ่ายจอประสาทตา (fundus)" data-en="Fundus photographs only">รองรับเฉพาะภาพถ่ายจอตา</span></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="footer-brand"><img src="icon.png" class="logo-img" alt="RetinaPlus">Retina<b>Plus</b></span>
+  <span style="font-size:12px;opacity:.75">© 2025 RetinaPlus · <span data-th="พัฒนาโดย Nathakorn" data-en="Developed by Nathakorn">พัฒนาโดย Nathakorn</span></span>
+</footer>
+<script src="shared.js"></script>
+<script src="detect.js"></script>
+</body>
+</html>

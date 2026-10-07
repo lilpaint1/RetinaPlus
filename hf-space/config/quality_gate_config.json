@@ -1,0 +1,28 @@
+{
+  "QIMG": 384,
+  "classes": ["Good", "Usable", "Reject"],
+  "default_profile": "fundus",
+  "profiles": {
+    "fundus": {
+      "label_th": "กล้องจอตามาตรฐาน",
+      "AREA_MIN": 0.28,
+      "BLUR_MIN": 8.0,
+      "BRI_LO": 35.0,
+      "BRI_HI": 160.0,
+      "REDNESS_MIN": 10.0,
+      "REJECT_THR": 0.75,
+      "use_model": true
+    },
+    "mobile": {
+      "label_th": "มือถือ + เลนส์ 20D",
+      "AREA_MIN": 0.05,
+      "BLUR_MIN": 7.0,
+      "BRI_LO": 22.0,
+      "BRI_HI": 220.0,
+      "REDNESS_MIN": 6.0,
+      "REJECT_THR": 0.90,
+      "use_model": false
+    }
+  },
+  "_note": "fundus = ค่าจาก EyeQ (tabletop). mobile = ผ่อนเกณฑ์ + ปิด EyeQ model (เทรนบน tabletop จะ over-reject ภาพ 20D) ใช้ heuristic อย่างเดียว รอ recalibrate ด้วยภาพ 20D จริง"
+}
