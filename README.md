@@ -36,7 +36,6 @@
 
 ## ข้อจำกัด (limitations)
 
-- การ validate ทั้งหมดใช้ภาพจาก **กล้อง fundus มาตรฐาน** ยังไม่ได้ validate กับภาพที่ถ่ายผ่านอุปกรณ์ 3D print + มือถือจริง ซึ่งมี domain shift (คุณภาพ แสง มุมมอง) ต้องทดสอบเพิ่มก่อนใช้งานจริง
 - ยังไม่ผ่านการรับรองทางการแพทย์/ขออนุมัติจริยธรรมการวิจัย (IRB) ไม่ควรใช้ตัดสินการรักษา
 - Quality gate เป็นด่านกรองเบื้องต้น ไม่ได้รับประกันว่าภาพที่ผ่านจะเหมาะกับการวินิจฉัยทุกกรณี
 
@@ -79,3 +78,5 @@ python app.py        # http://localhost:8080
 ## Tech stack
 
 PyTorch · timm (EfficientNet-B4/B0) · segmentation-models-pytorch (UNet++) · OpenCV · Flask + Gunicorn · Docker
+
+`<Nathakorn>` · [GitHub](https://github.com/lilpaint1)
